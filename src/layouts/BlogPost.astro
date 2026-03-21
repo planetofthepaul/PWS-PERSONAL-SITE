@@ -1,0 +1,202 @@
+---
+const { frontmatter } = Astro.props;
+const { title, description, date } = frontmatter;
+
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} — Paul Staples</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+  <meta property="og:title" content={`${title} — Paul Staples`} />
+  <meta property="og:description" content={description} />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={`${title} — Paul Staples`} />
+  <meta name="twitter:description" content={description} />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script async src="https://plausible.io/js/pa-KHlZ0CVIo1MsrHqGK0TXb.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f5f0;
+      --ink: #1a1814;
+      --muted: #888075;
+      --accent: #c1440e;
+      --rule: #d8d3cb;
+      --card-bg: #ffffff;
+      --cta: #2a6496;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Lora', Georgia, serif;
+      min-height: 100vh;
+      padding: 0 1.5rem;
+    }
+
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 4rem 0 6rem;
+    }
+
+    .back-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--ink); }
+
+    .post-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-top: 1.5rem;
+    }
+
+    .post-date {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      margin-top: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .post-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .post-body h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .post-body h3 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .post-body p {
+      margin-bottom: 1.25rem;
+    }
+
+    .post-body a {
+      color: var(--cta);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .post-body a:hover { color: var(--accent); }
+
+    .post-body img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+    }
+
+    .post-body blockquote {
+      border-left: 3px solid var(--rule);
+      padding-left: 1.25rem;
+      color: var(--muted);
+      font-style: italic;
+      margin: 1.5rem 0;
+    }
+
+    .post-body code {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.9em;
+      background: var(--card-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      border: 1px solid var(--rule);
+    }
+
+    .post-body pre {
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+
+    .post-body pre code {
+      border: none;
+      padding: 0;
+      background: none;
+    }
+
+    .post-body ul, .post-body ol {
+      margin-bottom: 1.25rem;
+      padding-left: 1.5rem;
+    }
+
+    .post-body li {
+      margin-bottom: 0.4rem;
+    }
+
+    .post-body strong {
+      font-weight: 500;
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--rule);
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a class="back-link" href="/blog/">← Back to blog</a>
+    <h1 class="post-title">{title}</h1>
+    <time class="post-date">{formattedDate}</time>
+    <div class="post-body">
+      <slot />
+    </div>
+    <footer>© 2026 Paul Staples</footer>
+  </div>
+</body>
+</html>

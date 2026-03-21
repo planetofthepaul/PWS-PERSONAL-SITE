@@ -1,0 +1,164 @@
+---
+const posts = await Astro.glob('../content/blog/*.md');
+const sortedPosts = posts.sort((a, b) =>
+  new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Paul Staples</title>
+  <meta name="description" content="Writing about whatever I'm thinking about." />
+  <link rel="canonical" href="https://paulwstaples.com/blog/" />
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script async src="https://plausible.io/js/pa-KHlZ0CVIo1MsrHqGK0TXb.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f5f0;
+      --ink: #1a1814;
+      --muted: #888075;
+      --accent: #c1440e;
+      --rule: #d8d3cb;
+      --card-bg: #ffffff;
+      --cta: #2a6496;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Lora', Georgia, serif;
+      min-height: 100vh;
+      padding: 0 1.5rem;
+    }
+
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 4rem 0 6rem;
+    }
+
+    .back-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--ink); }
+
+    .page-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-top: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .post-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .post-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 1.5rem;
+      padding: 1.1rem 1.25rem;
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .post-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 12px rgba(193,68,14,0.07);
+    }
+
+    .post-card-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .post-card-desc {
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .post-card-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--rule);
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 480px) {
+      .post-card { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a class="back-link" href="/">← Home</a>
+    <h1 class="page-title">Blog</h1>
+
+    <div class="post-list">
+      {sortedPosts.map((post) => {
+        const date = new Date(post.frontmatter.date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        });
+        return (
+          <a class="post-card" href={post.url}>
+            <div>
+              <div class="post-card-title">{post.frontmatter.title}</div>
+              <div class="post-card-desc">{post.frontmatter.description}</div>
+            </div>
+            <time class="post-card-date">{date}</time>
+          </a>
+        );
+      })}
+    </div>
+
+    <footer>© 2026 Paul Staples</footer>
+  </div>
+</body>
+</html>
