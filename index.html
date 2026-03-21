@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paul Staples</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-KHlZ0CVIo1MsrHqGK0TXb.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f5f0;
+      --ink: #1a1814;
+      --muted: #888075;
+      --accent: #c1440e;
+      --rule: #d8d3cb;
+      --card-bg: #ffffff;
+      --cta: #2a6496;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Lora', Georgia, serif;
+      min-height: 100vh;
+      padding: 0 1.5rem;
+    }
+
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 5rem 0 6rem;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: rise 0.6s ease forwards;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid var(--rule);
+    }
+
+    .name {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .bio {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--ink);
+      max-width: 520px;
+    }
+
+    .bio + .bio {
+      margin-top: 0.75rem;
+    }
+
+    .bio .cta {
+      color: var(--cta);
+      font-style: italic;
+    }
+
+    /* Social links directly under bio */
+    .social {
+      margin-top: 1.25rem;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .social-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.45rem 0.85rem;
+      border: 1px solid var(--rule);
+      border-radius: 100px;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .social-link:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+      background: var(--card-bg);
+    }
+
+    /* Section labels */
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* Projects */
+    .projects {
+      margin-top: 3.5rem;
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: rise 0.6s ease 0.15s forwards;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      background: var(--card-bg);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .project:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 12px rgba(193,68,14,0.07);
+    }
+
+    .project:hover .project-arrow {
+      transform: translate(2px, -2px);
+      color: var(--accent);
+    }
+
+    .project-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--muted);
+      font-family: 'Lora', serif;
+      font-style: italic;
+    }
+
+    .project-arrow {
+      font-size: 0.9rem;
+      color: var(--rule);
+      transition: transform 0.2s, color 0.2s;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Subscribe */
+    .subscribe {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: rise 0.6s ease 0.3s forwards;
+    }
+
+    .subscribe iframe {
+      width: 100%;
+      border: none;
+      background: transparent;
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--rule);
+      letter-spacing: 0.05em;
+    }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      .header-inner { gap: 1.25rem; }
+      .avatar { width: 64px; height: 64px; }
+      .project { grid-template-columns: 1fr; }
+      .project-arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <div class="header-inner">
+        <img class="avatar" src="headshot.png" alt="Paul Staples" />
+        <h1 class="name">Hey, I'm Paul Staples.</h1>
+      </div>
+      <p class="bio">I spent the last 13 years at Vanguard, most recently as a marketing manager and communications strategist, then quit to relocate to Madrid for a couple of years.</p>
+      <p class="bio">Now I'm building small websites, writing about whatever I'm thinking about, and figuring out the rest as I go. The projects below are what's come out of it so far. <span class="cta">If any of it resonates, follow along.</span></p>
+      <div class="social">
+        <div class="social-links">
+          <a class="social-link" href="https://substack.com/@paulstaples" target="_blank" rel="noopener">Substack</a>
+          <a class="social-link" href="https://www.linkedin.com/in/paul-w-staples/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="social-link" href="https://www.instagram.com/paul_w_staples/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="projects">
+      <div class="section-label">Projects</div>
+      <div class="project-list">
+
+        <a class="project" href="https://minimumviableexpat.com" target="_blank" rel="noopener">
+          <div>
+            <div class="project-name">minimumviableexpat.com</div>
+            <div class="project-desc">Cost of living comparisons across 242 cities for expats and digital nomads.</div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
+
+        <a class="project" href="https://takeonanything.com" target="_blank" rel="noopener">
+          <div>
+            <div class="project-name">takeonanything.com</div>
+            <div class="project-desc">Free online tools that do one thing well. No ads, no login, no nonsense.</div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
+
+        <a class="project" href="https://screenstacka.com" target="_blank" rel="noopener">
+          <div>
+            <div class="project-name">screenstacka.com</div>
+            <div class="project-desc">Screen size comparison tool. Built in an afternoon, somehow found by Google.</div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
+
+        <a class="project" href="https://www.youtube.com/@GringoSiesta" target="_blank" rel="noopener">
+          <div>
+            <div class="project-name">Gringo Siesta — YouTube</div>
+            <div class="project-desc">Documenting the move to Spain, the learning curve, and whatever comes after landing.</div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
+
+      </div>
+    </section>
+
+    <section class="subscribe">
+      <div class="section-label">Subscribe</div>
+      <iframe src="https://paulstaples.substack.com/embed" height="150" frameborder="0" scrolling="no"></iframe>
+    </section>
+
+    <footer>© 2026 Paul Staples</footer>
+
+  </div>
+</body>
+</html>
