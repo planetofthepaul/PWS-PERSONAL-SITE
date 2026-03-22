@@ -60,13 +60,30 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
       padding: 0 1.5rem;
     }
 
-    .page {
+    .site-nav {
       max-width: 640px;
       margin: 0 auto;
-      padding: 4rem 1.5rem 6rem;
+      padding: 1.5rem 1.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .back-link {
+    .site-nav .name {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .site-nav .name:hover { color: var(--accent); }
+
+    .site-nav .nav-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .site-nav .nav-links a {
       font-family: 'DM Mono', monospace;
       font-size: 0.75rem;
       color: var(--muted);
@@ -74,7 +91,13 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
       letter-spacing: 0.03em;
       transition: color 0.2s;
     }
-    .back-link:hover { color: var(--ink); }
+    .site-nav .nav-links a:hover { color: var(--ink); }
+
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 6rem;
+    }
 
     .post-title {
       font-family: 'Lora', Georgia, serif;
@@ -82,7 +105,6 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
       font-weight: 500;
       letter-spacing: -0.02em;
       line-height: 1.25;
-      margin-top: 1.5rem;
     }
 
     .post-date {
@@ -179,6 +201,12 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
       font-weight: 500;
     }
 
+    .post-body hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 2rem 0;
+    }
+
     footer {
       margin-top: 4rem;
       font-family: 'DM Mono', monospace;
@@ -189,8 +217,14 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
   </style>
 </head>
 <body>
+  <nav class="site-nav">
+    <a class="name" href="/">Paul Staples</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </nav>
   <div class="page">
-    <a class="back-link" href="/blog/">← Back to blog</a>
     <h1 class="post-title">{title}</h1>
     <time class="post-date">{formattedDate}</time>
     <div class="post-body">
