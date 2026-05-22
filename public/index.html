@@ -184,6 +184,22 @@
       font-weight: 500;
       color: var(--ink);
       margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .project-status {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 100px;
+      padding: 0.1rem 0.5rem;
+      font-weight: 400;
     }
 
     .project-desc {
@@ -245,10 +261,10 @@
       <div class="section-label">Projects</div>
       <div class="project-list">
 
-        <a class="project" href="https://minimumviableexpat.com" target="_blank" rel="noopener">
+        <a class="project" href="https://chronl.com" target="_blank" rel="noopener">
           <div>
-            <div class="project-name">minimumviableexpat.com</div>
-            <div class="project-desc">Cost of living comparisons across 242 cities for expats and digital nomads.</div>
+            <div class="project-name">chronl.com</div>
+            <div class="project-desc">A free daily history puzzle. Drag events into chronological order. 400+ daily players since launching in May 2026.</div>
           </div>
           <span class="project-arrow">↗</span>
         </a>
@@ -269,6 +285,16 @@
           <span class="project-arrow">↗</span>
         </a>
 
+        <a class="project" href="https://minimumviableexpat.com" target="_blank" rel="noopener">
+          <div>
+            <div class="project-name">
+              minimumviableexpat.com
+              <span class="project-status">In progress</span>
+            </div>
+            <div class="project-desc">Cost of living comparisons across 242 cities for expats and digital nomads.</div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </a>
 
       </div>
     </section>
