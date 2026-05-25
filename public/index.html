@@ -64,12 +64,12 @@
     }
 
     .avatar {
-      width: 64px;
-      height: 64px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       object-fit: cover;
       flex-shrink: 0;
-      border: 2px solid var(--ink);
+      image-rendering: -webkit-optimize-contrast;
     }
 
     .name {
@@ -248,8 +248,8 @@
       font-size: 0.65rem;
       font-weight: 500;
       letter-spacing: 0.02em;
-      color: var(--ink);
-      background: var(--yellow);
+      color: var(--muted);
+      background: #ececec;
       border-radius: 100px;
       padding: 0.18rem 0.5rem;
       line-height: 1.4;
@@ -288,7 +288,7 @@
     @media (max-width: 480px) {
       .page { padding: 3.5rem 0 4rem; }
       .header-inner { gap: 1rem; }
-      .avatar { width: 56px; height: 56px; }
+      .avatar { width: 64px; height: 64px; }
       .project { grid-template-columns: 1fr; padding: 1.15rem 1.2rem; }
       .project-arrow { display: none; }
     }
